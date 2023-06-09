@@ -1,0 +1,104 @@
+swagger: "2.0"
+info:
+  description: USER API
+  version: 1.0.0
+  title: A user API
+host: localhost:3000
+basePath: /api/v1
+schemes: 
+ - http
+tags: 
+  - name: USER Details
+    description: display details of users
+
+
+paths: 
+  /users:
+    get:
+      tags:
+        - Users
+      summary:
+        Retrieve all users
+      security: []
+      responses:
+        '200':
+          description: Successfull operation
+    post:
+      tags:
+        - Users
+      summary:
+        Create a new user
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Successfull operation
+  /users/{id}:
+    get:
+      tags: 
+        - Users
+      summary: Retrieve data of a specific user
+      description: Retrieve a user with the specified id in path
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successfull operation
+        '400':
+          description: invalid id
+        '404':
+          description: user not found
+    delete:
+      tags:
+        - Users
+      summary: Delete a specific user
+      description: Delete a user with the specified id in path
+      parameters:
+        - name: id
+          in: path
+          description: ID of user to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successfull operation
+        '400':
+          description: invalid id
+        '404':
+          description: user not found
+    put:
+      tags:
+        - Users
+      summary: Update a specific user based on id
+      description: Update values of a particular user based on id
+      parameters:
+        - in: body
+          name: body
+          description: User object that needs to be updated to the list
+          required: true
+          schema:
+            type: integer
+        - name: id
+          in: path
+          description: ID of user to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses: 
+        '201':
+          description: successfull operation
+        '400':
+          description: invalid id
+        '404':
+          description: user not found
+  
